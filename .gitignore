@@ -1,0 +1,32 @@
+# Local environments, dependencies and build outputs
+.venv/
+.deps/
+ext/sytorch/build/
+*.o
+*.so
+*.a
+__pycache__/
+*.pyc
+# Runtime data and results
+/data/
+/dataset/
+logs/
+log/
+runs/
+*.npy
+*.pt
+*.pth
+src/experiments/*/output/
+# Executables are built from source
+src/experiments/sgfpt/sgfpt_client
+src/tests/spt/test_sample
+src/tests/spt/test_select_top
+src/tests/spt/test_standard_normal
+src/tests/spt/test_update
+
+# Crash artifacts
+core
+core.*
+
+src/tests/spt/test_masked_protocols
+.DS_Store

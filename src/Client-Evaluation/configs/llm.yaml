@@ -1,0 +1,61 @@
+# LLM Prompt Tuning config (BBT-style, RoBERTa-LARGE)
+# Aligned with SecP-Tuning (ICLR 2026) for comparison.
+
+backbone: "roberta-large"
+gpu_id: "0"
+
+# Prompt architecture
+n_prompt_tokens: 50         # number of continuous prompt tokens
+prompt_dim: 1024            # RoBERTa-LARGE hidden dim
+intrinsic_dim: 500          # BBT default: low-dimensional search subspace
+
+# CMA-ES (sep-CMA-ES) parameters — reuses algorithm/sep_cma_es.py
+# For sep_cma_es.py compatibility, we set intrinsic_dim_L = intrinsic_dim, intrinsic_dim_V = 0
+intrinsic_dim_L: 500
+intrinsic_dim_V: 0
+sigma: 1
+seed: 42
+bound: 0
+popsize: 20                 # BBT default: ~4 + 3*log(500) ≈ 23, use 20
+budget: 8000                # max API calls; maxiter = budget/popsize = 400
+
+# Training
+batch_size: 256
+loss_type: "ce"
+
+# Per-dataset configs
+sst2:
+  batch_size: 512
+  r_per_batch: 2
+  max_seq_length: 128
+  verbalizer: {"0": "terrible", "1": "great"}
+  template: "<s> {sentence} It was <mask> . </s>"
+
+yelp_polarity:
+  batch_size: 4096
+  r_per_batch: 1
+  max_seq_length: 256
+  verbalizer: {"0": "terrible", "1": "great"}
+  template: "<s> {text} It was <mask> . </s>"
+
+ag_news:
+  batch_size: 2048
+  r_per_batch: 4
+  max_seq_length: 256
+  verbalizer: {"0": "World", "1": "Sports", "2": "Business", "3": "Tech"}
+  template: "<s> {text} This topic is about <mask> . </s>"
+
+mrpc:
+  batch_size: 512
+  r_per_batch: 20
+  max_seq_length: 256
+  verbalizer: {"0": "No", "1": "Yes"}
+  template: "<s> {sentence1} <mask> , {sentence2} </s>"
+  metric: "f1"
+
+rte:
+  batch_size: 1024
+  r_per_batch: 200
+  max_seq_length: 256
+  verbalizer: {"0": "Yes", "1": "No"}
+  template: "<s> {premise} <mask> , {hypothesis} </s>"

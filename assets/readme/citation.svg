@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="108" height="24" role="img" aria-label="Cite: BibTeX">
+  <title>Cite: BibTeX</title>
+  <defs><clipPath id="rounded"><rect width="108" height="24" rx="4"/></clipPath></defs>
+  <g clip-path="url(#rounded)">
+    <rect width="42" height="24" fill="#555"/>
+    <rect x="42" width="66" height="24" fill="#4b5563"/>
+  </g>
+  <g fill="#fff" text-anchor="middle" font-family="Verdana,DejaVu Sans,sans-serif" font-size="11">
+    <text x="21" y="16">Cite</text>
+    <text x="75" y="16">BibTeX</text>
+  </g>
+</svg>

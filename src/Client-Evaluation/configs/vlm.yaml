@@ -1,0 +1,46 @@
+backbone: "ViT-B/16"
+gpu_id: "0"   # GPU id，也可用命令行 --gpu 覆盖
+n_prompt_tokens_L: 8
+n_prompt_tokens_V: 5
+loss_type: "ce"
+intrinsic_dim_L: 200
+intrinsic_dim_V: 200
+sigma: 1    # Random projection缩放因子；增大以增强intrinsic空间到embedding空间的映射强度（原1太小）
+projection_scale: 1.0  # Random projection额外放大系数；1.0=原始，100.0=放大100倍
+seed: 42
+bound: 0
+batch_size: 256   # 原 32 偏小；调大可减少 batch 数、每 batch 更多样本
+shuffle_test: true # 测试集 DataLoader 是否 shuffle；false 可复现
+popsize: 30
+train_mode: true
+budget: 120
+
+
+cifar100:
+  test_every: 1
+  batch_size: 256        # 10,000 test samples ÷ 256 = 39 batches
+  r_per_batch: 6         # evaluation_time: 39 × 6 = 234 evolutions
+  # Total evolutions: 156 (< 300 ✓)
+
+dtd:
+  test_every: 1
+  batch_size: 256         # ~1,880 train samples ÷ 64 = 30 batches
+  r_per_batch: 32         # evaluation_time: 30 × 4 = 120 evolutions
+  # Total evolutions: 120 (< 300 ✓)
+
+flower102:
+  test_every: 1
+  batch_size: 256        
+  r_per_batch: 32        
+
+pets:
+  test_every: 1
+  batch_size: 256         # ~3,669 test samples ÷ 64 = 57 batches
+  r_per_batch: 16         # evaluation_time: 57 × 4 = 228 evolutions
+  # Total evolutions: 228 (< 300 ✓)
+
+eurosat:
+  test_every: 1
+  batch_size: 128
+  r_per_batch: 4
+

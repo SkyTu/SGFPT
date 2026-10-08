@@ -1,0 +1,15 @@
+# Validated on Python 3.8.20 with torch 2.1.0+cu118 / torchvision 0.16.0+cu118.
+# Install the matching CUDA PyTorch wheels separately for your GPU environment.
+numpy==1.24.4
+Pillow==10.4.0
+PyYAML==6.0.3
+tqdm==4.68.3
+ftfy==6.2.3
+regex==2024.11.6
+packaging>=23,<27
+transformers==4.30.2
+datasets==2.14.6
+# datasets 2.14 uses the PyExtensionType API removed by PyArrow 21.
+pyarrow>=8,<21
+fsspec==2023.10.0
+scipy>=1.10,<1.16
